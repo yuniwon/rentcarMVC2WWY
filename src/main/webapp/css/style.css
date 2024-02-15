@@ -1,5 +1,7 @@
 @charset "UTF-8";
 
-.inner{
-	display: flex;
+body{
+  background-color: #f4f4f4;
 }
+
+

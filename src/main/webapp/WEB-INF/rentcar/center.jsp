@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-여기는 푸터
+여기는 센터
 </body>
 </html>
