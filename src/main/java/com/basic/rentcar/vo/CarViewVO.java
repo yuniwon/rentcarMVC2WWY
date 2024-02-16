@@ -2,6 +2,7 @@ package com.basic.rentcar.vo;
 
 public class CarViewVO {
 	private int reserveSeq;	
+	private String id;
 	private int no; // car no 
 	private String name;
 	private int price;
@@ -92,6 +93,12 @@ public class CarViewVO {
 		return "CarViewVO [reserveSeq=" + reserveSeq + ", no=" + no + ", name=" + name + ", price=" + price + ", img="
 				+ img + ", qty=" + qty + ", dday=" + dday + ", rday=" + rday + ", usein=" + usein + ", usewifi="
 				+ usewifi + ", useseat=" + useseat + ", usenavi=" + usenavi + "]";
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
 	}
 	
 }

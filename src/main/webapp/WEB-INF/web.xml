@@ -79,4 +79,34 @@
     <servlet-name>reservationDeleteController</servlet-name>
     <url-pattern>/reservationDeleteController</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>insertpageController</display-name>
+    <servlet-name>insertpageController</servlet-name>
+    <servlet-class>com.basic.rentcar.controller.user.insertpageController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>insertpageController</servlet-name>
+    <url-pattern>/insertpageController</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>idConfirmCotroller</display-name>
+    <servlet-name>idConfirmCotroller</servlet-name>
+    <servlet-class>com.basic.rentcar.controller.user.idConfirmCotroller</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>idConfirmCotroller</servlet-name>
+    <url-pattern>/idConfirmCotroller</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>memberInsertController</display-name>
+    <servlet-name>memberInsertController</servlet-name>
+    <servlet-class>com.basic.rentcar.controller.user.memberInsertController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>memberInsertController</servlet-name>
+    <url-pattern>/memberInsertController</url-pattern>
+  </servlet-mapping>
 </web-app>

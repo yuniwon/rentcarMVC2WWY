@@ -26,7 +26,6 @@ public class mypageController extends HttpServlet {
 		System.out.println("마이페이지");
 		// 렌트카중에서 로그인된 아이디의 정보를 불러온다
 		String id = req.getParameter("id");
-		
 		ArrayList<CarViewVO> views = RentcarDao.getInstance().getAllReserve(id);
 		req.setAttribute("views", views);
 		System.out.println(views);

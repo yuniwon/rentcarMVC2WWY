@@ -27,6 +27,7 @@
 <th>카시트</th>
 <th>네비</th>
 <th>삭제</th>
+<th <c:if test="${loginId !='admin'}"> style="display:none" </c:if>>아이디</th>
 </tr>
 <c:forEach var="vo" items="${views}">
 <tr>
@@ -43,8 +44,12 @@
 <td><button onclick="deleteFn('${vo.no}','${vo.reserveSeq}','${vo.qty}')"
 	<c:if test="${loginId == null and loginId!='admin'}"> 
 disabled="disabled"
-</c:if>/>삭제</button></td>
+</c:if>>삭제</button></td>
+<td <c:if test="${loginId !='admin'}"> style="display:none" </c:if>>
+${vo.id}
+</td>
 </tr>
+
 </c:forEach>
 
 </table>

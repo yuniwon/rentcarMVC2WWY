@@ -274,14 +274,21 @@ public class RentcarDao {
 
 		try {
 			
-			//select * from rentcar a2 ,carreserve a1  where a1.id = 'qwer' and curdate() < date_format(a1.rday , '%y-%m-%d') and a1.no = a2.no;
-			// select * from rentcar a2 ,carreserve a1  where a1.id = 'qwer' and a1.no = a2.no;
+			String sql = "";
 			
-			String sql = "select * from rentcar a2 ,carreserve a1  where a1.id = ? and a1.no = a2.no";
 			System.out.println(id);
+			if(id.equals("admin")) {
+			sql = "select * from rentcar a2 ,carreserve a1  where a1.no = a2.no";				
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			}else {
+			sql = "select * from rentcar a2 ,carreserve a1  where a1.id = ? and a1.no = a2.no";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
+			}
+			
+
 			
 			while (rs.next()) {
 				bean = new CarViewVO();
@@ -297,6 +304,7 @@ public class RentcarDao {
 				bean.setUsewifi(rs.getInt("usewifi"));
 				bean.setUsenavi(rs.getInt("usenavi"));
 				bean.setUseseat(rs.getInt("useseat"));		
+				bean.setId(rs.getString("id"));
 				v.add(bean);
 				System.out.println(bean);
 			}

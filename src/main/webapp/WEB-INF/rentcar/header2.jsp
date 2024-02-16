@@ -30,10 +30,13 @@
 					<a href="${ctx}/logout.do" class="login">로그아웃</a>
 				</c:if>
 				<c:if test="${loginId eq null}">
-					<a href="#" class="register">회원가입</a>
+					<a href="${ctx}/memberinsert.do" class="register">회원가입</a>
 				</c:if>
-				<c:if test="${loginId ne null}">
-				<a href="#" class="register">회원정보수정</a>
+				<c:if test="${loginId ne null and loginId ne 'admin'}">
+					<a href="#" class="register">회원정보수정</a>
+				</c:if>
+				<c:if test="${loginId eq 'admin'}">
+					<a href="${ctx}/mypage.do?id=${loginId}" class="register">차량정보관리</a>
 				</c:if>
 
 			</div>

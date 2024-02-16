@@ -10,7 +10,7 @@ public class MemberVO {
 	private String job;
 	private String age;
 	private String info;
-
+	
 	public int getNo() {
 		return no;
 	}
