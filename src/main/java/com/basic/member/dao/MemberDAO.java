@@ -35,7 +35,7 @@ public class MemberDAO {
 			ps.setString(5, m.getHobby());
 			ps.setString(6, m.getJob());
 			ps.setString(7, m.getAge());
-			ps.setString(8, m.getInfo());
+			ps.setString(8, m.getInfo().trim());
 			cnt = ps.executeUpdate();
 			
 		} catch (Exception e) {
@@ -68,6 +68,62 @@ public class MemberDAO {
 		}
 		
 		return 0;
+	}
+
+	public MemberVO getOneMember(String id) {
+		conn = DBUtil.getConnection();
+		MemberVO m = new MemberVO();
+		try {
+			String sql = "select * from member where id=?";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, id);
+			
+			rs = ps.executeQuery();
+			if (rs.next()) {
+				m.setNo(rs.getInt("no"));
+				m.setId(rs.getString("id"));
+				m.setPw(rs.getString("pw"));
+				m.setEmail(rs.getString("email"));
+				m.setTel(rs.getString("tel"));
+				m.setHobby(rs.getString("hobby"));
+				m.setJob(rs.getString("job"));
+				m.setAge(rs.getString("age"));
+				m.setInfo(rs.getString("info").trim());
+			}
+			
+			System.out.println("회원정보확인");
+			System.out.println(m);
+	
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBUtil.dbclose(conn, ps, rs);
+		}
+		return m;
+	}
+
+	public void updateMember(MemberVO m) {
+		conn = DBUtil.getConnection();
+		
+		try {
+			String sql = "update member set email = ? , tel = ? , hobby = ? , job = ? , age = ?, info=?  where id = ?";
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, m.getEmail());
+			ps.setString(2, m.getTel());
+			ps.setString(3, m.getHobby());
+			ps.setString(4, m.getJob());
+			ps.setString(5, m.getAge());
+			ps.setString(6, m.getInfo().trim());
+			ps.setString(7, m.getId());
+			ps.executeUpdate();
+			
+			System.out.println("회원정보수정 완료");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBUtil.dbclose(conn, ps, rs);
+		}
+		
 	}
 	
 	

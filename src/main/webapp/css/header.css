@@ -3,12 +3,13 @@
 .header {
     background-color: #fff;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    position: relative;
+    position: fixed; /* 변경된 부분 */
     z-index: 1000;
     border: solid 1px;
-    
+    width: 100%; /* 헤더가 전체 너비를 차지하도록 설정 */
+    top: 0; /* 상단에 고정 */
+    left: 0; /* 좌측에 고정 */
 }
-
 .container {
     display: flex;
     justify-content: space-between;

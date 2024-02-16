@@ -1,7 +1,17 @@
 @charset "UTF-8";
+html, body {
+    height: 100%;
+    margin: 0;
+}
 
 body{
   background-color: #f4f4f4;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  align-items: center; /* 좌우 중앙 정렬 */
+  padding-top: 60px; /* 헤더 높이만큼 상단에 공간을 둡니다. */
 }
-
-
+.body-content {
+    padding-top: 60px; /* 헤더의 높이에 맞춰 조정 */
+}

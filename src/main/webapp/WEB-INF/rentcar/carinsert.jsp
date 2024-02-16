@@ -14,86 +14,121 @@
 	crossorigin="anonymous">
 <script
 	src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+
+<!-- 이미지 미리보기 -->
+<script>
+	function setThumbnail(event) {
+		//파일이 비어있으면 돌아가기
+		 if(event.target.files.length == 0) return;
+		 //이미 선택한 파일이 있는경우 원래 미리보기를 지워줌
+		  document.querySelector("#thumbnail").innerHTML = "";
+		  
+		let reader = new FileReader();
+
+		reader.onload = function(event) {
+			let img = document.createElement("img");
+			img.setAttribute("src", event.target.result);
+			img.setAttribute("class", "col-lg-6");
+			img.setAttribute("width", "200");
+			document.querySelector("#thumbnail").appendChild(img); 
+		};
+
+		reader.readAsDataURL(event.target.files[0]);
+	}
+</script>
 </head>
+
 <body>
-	<h1 class="py-3">회원 가입</h1>
-	<form name="memberForm" action="${ctx}/memberUpload.do" method="post"
-		>
+	<c:if test="${car ne null}">
+		<h1 class="py-3">자동차 정보 수정</h1>
+	</c:if>
+	<c:if test="${car eq null}">
+		<h1 class="py-3">자동차 등록</h1>
+	</c:if>
+	<form name="carForm" action="${ctx}/carUpload.do" method="post"
+		enctype="multipart/form-data">
+		<c:if test="${car.no ne null}"><input type="hidden" name="no" value="${car.no}" /></c:if>
 		<table class="table table-bordered">
 			<tr>
-				<td>아이디</td>
-				<td><input class="col-12" type="text" id="id" name="id" /></td>
-				<td><input type="button" value="중복체크" id="checkId"
-					class="btn btn-outline-dark"><br>
-					<div id="checkMessage"></div></td>
+				<td>차량이름</td>
+				<td colspan="1"><input class="col-12" type="text" id="name"
+					name="name"
+					<c:if test="${car.name ne null}"> value="${car.name}" </c:if> /></td>
 			</tr>
 			<tr>
-				<td>비밀번호</td>
-				<td colspan="2"><input class="col-12" type="password"
-					name="pw" /></td>
+				<td>차량 종류</td>
+				<td colspan="1"><input
+					<c:if test="${car.category ne null}"> value="${car.category}" </c:if>
+					placeholder="1:소형 2:중형 3:대형" class="col-12" type="number"
+					name="category" /></td>
 			</tr>
 			<tr>
-				<td>이메일</td>
-				<td colspan="2"><input class="col-12" type="text" name="email" /></td>
+				<td>렌트가격</td>
+				<td colspan="1"><input
+					<c:if test="${car.price ne null}"> value="${car.price}" </c:if>
+					class="col-12" type="number" name="price" /></td>
 			</tr>
 			<tr>
-				<td>전화번호</td>
-				<td colspan="2"><input class="col-12" type="text" name="tel" /></td>
+				<td>승차인원</td>
+				<td colspan="1"><input
+					<c:if test="${car.usepeople ne null}"> value="${car.usepeople}" </c:if>
+					class="col-12" type="number" name="usepeople" /></td>
 			</tr>
 			<tr>
-				<td>취미</td>
-				<td colspan="2"><input class="col-12" type="text" name="hobby" /></td>
+				<td>렌트카 총 수량</td>
+				<td colspan="1"><input
+					<c:if test="${car.totalQty ne null}"> value="${car.totalQty}" </c:if>
+					class="col-12" type="number" name="qty" /></td>
 			</tr>
 			<tr>
-				<td>직업</td>
-				<td colspan="2"><input class="col-12" type="text" name="job" /></td>
+				<td>차량 회사 정보</td>
+				<td colspan="1"><input
+					<c:if test="${car.company ne null}"> value="${car.company}" </c:if>
+					class="col-12" type="text" name="company" /></td>
 			</tr>
 			<tr>
-				<td>나이</td>
-				<td colspan="2"><input class="col-12" type="text" name="age" /></td>
+				<td>차량 이미지</td>
+				<td colspan="1" style="text-align: left;" ><input type="file"
+					name="uploadFile" accept="image/*" onchange="setThumbnail(event);">
+					<div id="thumbnail"><c:if test="${car.img ne null}"><img src="${ctx}/img/${car.img}" width="200"> </c:if></div>
+					</td>
 			</tr>
 			<tr>
-				<td>소개</td>
-				<td colspan="2" height=200><textarea placeholder="내용을 입력하세요"
-						style='height: 200px;' name="content">
+				<td>차량 정보</td>
+				<td colspan="1" height=200><textarea placeholder="내용을 입력하세요"
+						style='height: 200px; width: 100%;' name="info"><c:if test="${car.info ne null}"> ${car.info} </c:if>
 				</textarea></td>
 			</tr>
 			<tr>
-				<td colspan="3" align="center"><input type="button" value="가입"
+				
+				<td colspan="2" align="center"><input type="button" value="등록"
 					class="col-3 btn btn-primary" onclick="validCheck(form)" /> <input
 					type="reset" value="취소" class="col-3 btn btn-warning" /></td>
+		
 		</table>
+		
 	</form>
-
-
 </body>
 </html>
 <script>
 	let check = 0;
 	function validCheck(form) {
 
-		if (!form.id.value.trim()) {
-			alert("아이디를 입력해주세요");
-			form.id.focus();
+		if (!form.name.value.trim()) {
+			alert("차량이름을 입력해주세요");
+			form.name.focus();
 			return false;
 		}
-		if (!form.pw.value.trim()) {
-			alert("패스워드를 입력해주세요");
-			form.id.focus();
+		if (!form.category.value.trim()) {
+			alert("종류를 입력해주세요");
+			form.category.focus();
 			return false;
 		}
 
-		if (!form.age.value.trim()) {
-			alert("나이를 입력해주세요");
-			form.age.focus();
+		if (!form.price.value.trim()) {
+			alert("가격을 입력해주세요");
+			form.price.focus();
 			return false;
-		} else {
-			if (Number(form.age.value.trim()) < 10
-					|| Number(form.age.value.trim()) > 99) {
-				alert("나이 값(10-99)을 정확하게 입력하세요");
-				form.age.focus();
-				return false;
-			}
 		}
 
 		/*
@@ -104,68 +139,68 @@
 		. 뒤에는 영어소문자 2자리 이상
 		 */
 
-		if (!form.email.value.match(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/)) {
-			alert("이메일 형식이 다릅니다");
-			form.email.value = "test@test.com";
-			form.email.focus();
+		if (!form.usepeople.value.trim()) {
+			alert("승차인원을 입력해주세요");
+			form.usepeople.focus();
 			return false;
 		}
 
-		if (!form.tel.value.match(/010-\d{3,4}-\d{4}/)) {
-			alert("전화번호 형식이 다릅니다");
-			form.phone.value = "010-1234-1234";
-			form.phone.focus();
+		if (Number(form.qty.value.trim()) < 1) {
+			alert("렌트카 수량은 최소 1대 이상이어야 합니다");
+			form.qty.focus();
+			return false;
+		}
+		if (!form.company.value.trim()) {
+			alert("회사정보를 입력해주세요");
+			form.company.focus();
 			return false;
 		}
 
-		if (check == 0) {
-			alert('id 중복체크 해주세요');
-			return false;
-		} else if (check == -1) {
-			alert('id 중복체크 다시하세요');
+		if (!form.info.value.trim()) {
+			alert("차량정보를 입력해주세요");
+			form.info.focus();
 			return false;
 		}
 
-		alert("회원가입 성공!")
+		alert("차량등록 성공!")
 		form.submit();
 	}
+	/* 
+	 $("#checkId").click(function() {
+	 if ($("#id").val()) {
+	 let query = {
+	 id : $("#id").val()
+	 };
 
-	$("#checkId").click(function() {
-		if ($("#id").val()) {
-			let query = {
-				id : $("#id").val()
-			};
+	 $.ajax({ // ajax 요청 명령어
+	 type : "post", // 요청방식
+	 url : "confirm.do",
+	 data : query, // 위에서 만든 id값을 넣어줌
+	 success : function(data) { // 요청페이지 호출 및 처리에 성공하면 다음 함수를 실행
+	 if (data == 1) {
+	 alert('사용할 수 없는 id 입니다');
+	 $("#id").val(''); // 입력되어있는 값을 초기화
+	 check = -1;
+	 } else {
+	 alert('사용 가능한 아이디입니다');
+	 $("#passwd").focus();
+	 check = 1;
+	 }
+	 ;// if문 끝
+	 } // 성공 호출함수 끝
+	 }) // ajax문 끝
 
-			$.ajax({ // ajax 요청 명령어
-				type : "post", // 요청방식
-				url : "confirm.do",
-				data : query, // 위에서 만든 id값을 넣어줌
-				success : function(data) { // 요청페이지 호출 및 처리에 성공하면 다음 함수를 실행
-					if (data == 1) {
-						alert('사용할 수 없는 id 입니다');
-						$("#id").val(''); // 입력되어있는 값을 초기화
-						check = -1;
-					} else {
-						alert('사용 가능한 아이디입니다');
-						$("#passwd").focus();
-						check = 1;
-					}
-					;// if문 끝
-				} // 성공 호출함수 끝
-			}) // ajax문 끝
+	 } else { // 아이디 값이 비어있다면
+	 alert("사용할 아이디를 입력해주세요")
+	 $("#id").focus();
+	 }
 
-		} else { // 아이디 값이 비어있다면
-			alert("사용할 아이디를 입력해주세요")
-			$("#id").focus();
-		}
-
-	})
-
+	 })
+	 */
 	//document.getElementById("checkId").addEventListener("keyup", (){
-
 	//	document.getElementById("checkMessage").innerHTML = "아이디 중복체크를 해주세요";
 	//})
-	document
+	/* document
 			.getElementById("id")
 			.addEventListener(
 					"keyup",
@@ -178,5 +213,5 @@
 						} else {
 							document.getElementById("checkMessage").innerHTML = "";
 						}
-					})
+					}) */
 </script>

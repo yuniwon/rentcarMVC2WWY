@@ -1,46 +1,33 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-        <%@ taglib prefix="c" uri="jakarta.tags.core" %>
-    <c:set var="ctx" value="${ pageContext.request.contextPath }" />
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="/rentcarMVC2WWY/css/style.css">
-<style>
-
-</style>
-</head>
-<body>
-
-	<header>
-		<div class="inner" align="center">
-		<ul><li>
-			<a href="${ctx}/main.jsp" class="logo">ONECAR</a>
-		</li>
-		</ul>
-			<div id="gnb">
-				<ul>
-					<li><a href="${ctx}/reservation.do">예약하기</a></li>
-					<li><a href="">마이페이지</a></li>
-					<li><a href="">이벤트</a></li>
-					<li><a href="">고객센터</a></li>
-
-				</ul>
-			</div>
-			
-			<!-- 만약 로그인되어있지 않다면  -->
-			<c:if test="${loginId eq null}">
-			<a href="${ctx}/loginForm.do">로그인</a>
-			</c:if>
-			<c:if test="${loginId ne null}">
-			<a href="${ctx}/logout.do">로그아웃</a>
-			</c:if>
-			
-		<!-- 로그인 되어있으면 -->
-		</div>
-	</header>
-
-</body>
-</html>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core"%>
+<c:set var="ctx" value="${ pageContext.request.contextPath }" />
+<header class="header">
+    <div class="container">
+        <a href="${ctx}/main.jsp" class="logo">ONECAR</a>
+        <nav class="navbar">
+            <ul class="nav-menu">
+                <li><a href="${ctx}/reservation.do">예약하기</a></li>
+                <li><a href="${ctx}/mypage.do?id=${loginId}">마이페이지</a></li>
+                <li><a href="#">이벤트</a></li>
+                <li><a href="#">고객센터</a></li>
+            </ul>
+        </nav>
+        <div class="header-right">
+            <c:if test="${loginId eq null}">
+                <a href="${ctx}/loginForm.do" class="login">로그인</a>
+            </c:if>
+            <c:if test="${loginId ne null}">
+                <a href="${ctx}/logout.do" class="login">로그아웃</a>
+            </c:if>
+            <c:if test="${loginId eq null}">
+                <a href="${ctx}/memberinsert.do" class="register">회원가입</a>
+            </c:if>
+            <c:if test="${loginId ne null and loginId ne 'admin'}">
+                <a href="${ctx}/memberupdate.do?id=${loginId}" class="register">회원정보수정</a>
+            </c:if>
+            <c:if test="${loginId eq 'admin'}">
+                <a href="${ctx}/allcarlist.do?id=${loginId}" class="register">차량정보관리</a>
+            </c:if>
+        </div>
+    </div>
+</header>

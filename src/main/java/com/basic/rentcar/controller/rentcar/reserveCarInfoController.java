@@ -9,13 +9,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import com.basic.rentcar.dao.RentcarDao;
-import com.basic.rentcar.vo.CarViewVO;
+import com.basic.rentcar.vo.RentcarVO;
 
 /**
- * Servlet implementation class mypageController
+ * Servlet implementation class carInfoController
  */
-@WebServlet("/mypage.do")
-public class mypageController extends HttpServlet {
+@WebServlet("/carinfo.do")
+public class reserveCarInfoController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -23,18 +23,13 @@ public class mypageController extends HttpServlet {
 	 */
 	protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		
-		System.out.println("마이페이지");
-		// 렌트카중에서 로그인된 아이디의 정보를 불러온다
-
-		String id = req.getParameter("id");
-
-		System.out.println("로그인 아이디 : " + id);
-		ArrayList<CarViewVO> views = RentcarDao.getInstance().getAllReserve(id);
-		req.setAttribute("views", views);
-		System.out.println(views);
-		req.setAttribute("center", "rentcar/mypage.jsp");
-		req.getRequestDispatcher("/main.jsp").forward(req, res);
+		int num = Integer.parseInt(req.getParameter("num"));
 		
+		RentcarVO car = RentcarDao.getInstance().getOneCar(num);
+		req.setAttribute("car", car);
+		System.out.println(car);
+		req.setAttribute("center", "rentcar/carInfo.jsp");
+		req.getRequestDispatcher("/main.jsp").forward(req, res);
 	}
 
 }

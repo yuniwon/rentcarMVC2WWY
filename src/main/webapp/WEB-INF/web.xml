@@ -109,4 +109,44 @@
     <servlet-name>memberInsertController</servlet-name>
     <url-pattern>/memberInsertController</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>modificationController</display-name>
+    <servlet-name>modificationController</servlet-name>
+    <servlet-class>com.basic.rentcar.controller.rentcar.modificationController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>modificationController</servlet-name>
+    <url-pattern>/modificationController</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>carInfoUploadController</display-name>
+    <servlet-name>carInfoUploadController</servlet-name>
+    <servlet-class>com.basic.rentcar.controller.rentcar.carInfoUploadController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>carInfoUploadController</servlet-name>
+    <url-pattern>/carInfoUploadController</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>memberUpdatepageController</display-name>
+    <servlet-name>memberUpdatepageController</servlet-name>
+    <servlet-class>com.basic.rentcar.controller.user.memberUpdatepageController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>memberUpdatepageController</servlet-name>
+    <url-pattern>/memberUpdatepageController</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>memberUpdateProcontroller</display-name>
+    <servlet-name>memberUpdateProcontroller</servlet-name>
+    <servlet-class>com.basic.rentcar.controller.user.memberUpdateProcontroller</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>memberUpdateProcontroller</servlet-name>
+    <url-pattern>/memberUpdateProcontroller</url-pattern>
+  </servlet-mapping>
 </web-app>

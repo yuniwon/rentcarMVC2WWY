@@ -21,7 +21,7 @@
 		<input type="submit" value="검색" />&nbsp;&nbsp;
 </form>
 <button onclick="location.href='${ctx}/reservation.do'">전체 검색</button>
-<table>
+<table border="1">
 <tr>
 <th>
 이름
@@ -51,6 +51,12 @@
 <c:if test="${vo.category eq 3}">
 대형
 </c:if>
+  </td>
+  <td>
+  ${vo.price}원(1일)
+  </td>
+  <td>
+  ${vo.totalQty}대
   </td>
 </tr>
   </c:forEach>

@@ -15,15 +15,15 @@ public class RentcarVO {
 	public RentcarVO(int no, String name, int category, int price, int usepeople, int totalQty, String company,
 			String img, String info) {
 		super();
-		this.no = no;
-		this.name = name;
-		this.category = category;
-		this.price = price;
-		this.usepeople = usepeople;
-		this.totalQty = totalQty;
-		this.company = company;
-		this.img = img;
-		this.info = info;
+		this.no = no; // 고유번호
+		this.name = name; //차량이름
+		this.category = category; //차종
+		this.price = price; // 가격
+		this.usepeople = usepeople; // 승차인원
+		this.totalQty = totalQty; // 차량대수
+		this.company = company; //제조회사
+		this.img = img; // 차 이미지
+		this.info = info; //차량 정보
 	}
 	public int getNo() {
 		return no;

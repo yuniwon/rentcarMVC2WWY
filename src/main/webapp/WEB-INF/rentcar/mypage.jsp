@@ -10,8 +10,8 @@
 </head>
 <body>
 <script type="text/javascript">
-	function deleteFn(no,reserveSeq,qty) {
-		location.href = "${ctx}/reserveDelete.do?reserveSeq="+reserveSeq+"&no="+no+"&qty="+qty;
+	function deleteFn(no,reserveSeq,qty,id) {
+		location.href = "${ctx}/reserveDelete.do?reserveSeq="+reserveSeq+"&no="+no+"&qty="+qty+"&id="+id;
 	}
 </script>
 <table border="1">
@@ -41,7 +41,7 @@
 <td>${vo.usewifi eq 1 ? "적용" : "비적용"}</td>
 <td>${vo.usenavi eq 1 ? "적용" : "비적용"}</td>
 <td>${vo.useseat eq 1 ? "적용" : "비적용"}</td>
-<td><button onclick="deleteFn('${vo.no}','${vo.reserveSeq}','${vo.qty}')"
+<td><button onclick="deleteFn('${vo.no}','${vo.reserveSeq}','${vo.qty}','${loginId}')"
 	<c:if test="${loginId == null and loginId!='admin'}"> 
 disabled="disabled"
 </c:if>>삭제</button></td>

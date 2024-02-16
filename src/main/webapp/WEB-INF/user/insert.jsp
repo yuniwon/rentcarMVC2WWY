@@ -17,20 +17,18 @@
 </head>
 <body>
 	<h1 class="py-3">회원 가입</h1>
-	<form name="memberForm" action="${ctx}/memberUpload.do" method="post"
-		>
+	<form name="memberForm" action="${ctx}/memberUpload.do" method="post">
 		<table class="table table-bordered">
 			<tr>
 				<td>아이디</td>
-				<td><input class="col-12" type="text" id="id" name="id" /></td>
+				<td><input class="col-12" type="text" id="id" name="id"  /></td>
 				<td><input type="button" value="중복체크" id="checkId"
 					class="btn btn-outline-dark"><br>
 					<div id="checkMessage"></div></td>
 			</tr>
 			<tr>
 				<td>비밀번호</td>
-				<td colspan="2"><input class="col-12" type="password"
-					name="pw" /></td>
+				<td colspan="2"><input class="col-12" type="password" name="pw" /></td>
 			</tr>
 			<tr>
 				<td>이메일</td>
