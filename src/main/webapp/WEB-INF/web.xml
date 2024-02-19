@@ -9,6 +9,10 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  <context-param>
+  <param-name>IMG_DIR</param-name>
+  <param-value>C:\rentcarMVC2WWY\img</param-value>
+  </context-param>
   <servlet>
     <description></description>
     <display-name>loginController</display-name>
