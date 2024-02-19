@@ -8,17 +8,20 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <!-- <link rel="stylesheet" href="./css/style.css"> -->
+<link rel="stylesheet" href="${ctx}/css/style.css">
 </head>
 <body>
 <div class="carlist">
 검색창
 <form action="${ctx}/carCategory.do" method="post">
+<div class="search">
 		<select name="category">
 			<option value="1">소형</option>
 			<option value="2">중형</option>
 			<option value="3">대형</option>
 		</select>
 		<input type="submit" value="검색" />&nbsp;&nbsp;
+</div>
 </form>
 <button onclick="location.href='${ctx}/reservation.do'">전체 검색</button>
 <table border="1">

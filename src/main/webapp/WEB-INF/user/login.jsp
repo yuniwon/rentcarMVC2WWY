@@ -8,7 +8,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title> -->
 <link rel="stylesheet" href="${ctx}/css/login.css">
-<link rel="stylesheet" href="${ctx}/css/style.css">
 <!-- </head>
 <body> -->
 <div class="login-container" >
